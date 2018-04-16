@@ -80,36 +80,36 @@ function loadQuestions() {
     var secondsLeft = 60;
     $("#main-area").html("<p>Time left: <span id='timer'></span></p><br>"); //load timer
     timer = setInterval(function() { //timer function--every second...
-        secondsLeft--;  //decrease seconds left by 1    //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!
+        secondsLeft--;  //decrease seconds left by 1
         $("#timer").text(secondsLeft); //display seconds left
         if (secondsLeft === 0) { //if time runs out...
             clearInterval(timer);  //stop timer
             endGame(); //end game (see endGame function)
-            } //LOOK OUT FOR SCOPE ISSUES!!!!!!****************************************
+            }
     }, 1000);
     $("#done-container").append("<button id='done'>Done</button>"); //load "done" button   
     $("#done-container").on("click", "#done", function() { //if "done" button is clicked...
         clearInterval(timer); //stop timer
         endGame(); //end game (see endGame function)
     });
-    for (var i = 0; i < questions.length; i++) { //for each question...
+    for (var i = 0; i < questions.length; i++) { //for each question... //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!
         var questionHTML = getQuestion(questions[i]); //load question text from corresponding object in array
-        $("#questions").append(questionHTML); //append questions, answers, & buttons for each question
+        $("#questions-container").append(questionHTML); //append questions, answers, & buttons for each question
     }
 }
 
 function getQuestion(questionObject) { //to print questions, answers, and radio buttons
-    //create HTML elements for each question based on question object and then return div with that question, correct answer, buttons
+    //create HTML elements for each question and return div with that question, correct answer, buttons
     $("#questions-container").html("<div id='this-question'><br>"); //add div for each question
     $("#this-question").text(questionObject.question + "<br>"); //print question text
     for (var x = 0; x < questionObject.answerChoices.length; x++) { //for each answer choice...**********************
         $("this-question").append(questionObject.answerChoices[x]); //print answer text
-        $("#questions").prepend("<input type='radio'></input>"); //add radio button
+        $("#this-question").prepend("<input type='radio'></input>"); //add radio button
         $("input").attr("userIndex", x); //assign index to button ******************************
     }
 }
 
-function endGame() {
+function endGame() { //NOT WORKING!!!!!!!!!
     calculate(); 
     $("body").html("<p id='game-done'>") //generate paragraph to hold the info below
     $("#game-done").html("<h2>Game over!</h2><br>"); //game over message
@@ -117,11 +117,10 @@ function endGame() {
     $("#game-done").html("<h4>Incorrect: " + numIncorrect + "</h4><br>"); //number of wrong answers
     $("#game-done").html("<h4>Unanswered: " + numUnanswered + "</h4><br>"); //number of unanswered questions
     $("#game-done").html("<button id='play-again'>Play Again!</button>");
-    resetGame(); 
-        
-    }
+    resetGame();
+}
 
-function calculate() {
+function calculate() { //NOT WORKING!!!!!!!!!!!!
     for (var i = 0; i < questions.length; i++) {
         if (questions[i].answerIndex == (userChoices[i])) { //if index of correct answer = index of user choice...
             numCorrect++;
