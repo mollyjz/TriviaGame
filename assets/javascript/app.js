@@ -13,102 +13,53 @@ var questions = [ //array containing objects with questions, answer choices, and
     {
         question: "What is the capital of Syria?",
         answerChoices: ["Benghazi", "Beirut", "Cairo", "Damascus"],
-        answerIndex: 3
+        answerIndex: 3,
     },
     {
         question: "What is the tallest mountain in the world?",
         answerChoices: ["Mt. Everest", "Mt. Olympus", "Mt. Kilimanjaro", "Mt. Washington"],
-        answerIndex: 0
+        answerIndex: 0,
     },
     {
         question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerChoices: ["Mississippi", "Ganges", "Nile", "Volta"],
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What country is home to Mount Kilimanjaro?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerChoices: ["Africa", "Zimbabwe", "c", "d"],
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the official language of Chad?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the longest river in the world?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the longest river in the world?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the longest river in the world?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the longest river in the world?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
     },
     {
         question:"What is the longest river in the world?",
         answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
-    },
-    {
-        question:"What is the longest river in the world?",
-        answerChoices: ["a", "b", "c", "d"],
-        answerIndex: 2 //c is right answer
+        answerIndex: 2 //c is right answer,
+        //userIndex: undefined
     }
 ] //ON START BUTTON CLICK, loop through questions, print to screen along with answer choices & radio buttons***************************************
 
@@ -122,15 +73,15 @@ var numUnanswered = questions.length - userChoices.length;  //number of question
 
 function startScreen() {
     $("#main-area").html("<button id='start'>Start</button>") //load start button
-    $("#start").on("click", loadQuestions); //load questions function (see below)
+    $("#start").on("click", loadQuestions) //load questions function (see below)
 }
 
 function loadQuestions() {
-    var secondsLeft = 180;
-    $("#main-area").html("<p>Time left: <span id='timer'></span>" + secondsLeft + "</p><br>"); //load timer
+    var secondsLeft = 60;
+    $("#main-area").html("<p>Time left: <span id='timer'></span></p><br>"); //load timer
     timer = setInterval(function() { //timer function--every second...
-        secondsLeft--;  //decrease seconds left by 1
-        $("#display").text(secondsLeft); //display seconds left
+        secondsLeft--;  //decrease seconds left by 1    //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!
+        $("#timer").text(secondsLeft); //display seconds left
         if (secondsLeft === 0) { //if time runs out...
             clearInterval(timer);  //stop timer
             endGame(); //end game (see endGame function)
@@ -154,7 +105,7 @@ function getQuestion(questionObject) { //to print questions, answers, and radio 
     for (var x = 0; x < questionObject.answerChoices.length; x++) { //for each answer choice...**********************
         $("this-question").append(questionObject.answerChoices[x]); //print answer text
         $("#questions").prepend("<input type='radio'></input>"); //add radio button
-        $("input").attr([x]); //assign index to button ******************************
+        $("input").attr("userIndex", x); //assign index to button ******************************
     }
 }
 
