@@ -62,14 +62,11 @@ var numUnanswered = questions.length - userChoices.length;
 function startScreen() { //works
     $("#main-area").html("<button id='start'>Start</button>") //load start button
     $("#start").on("click", loadQuestions) //load questions function (see below)
-    $("#start").on("click", function(){
-        $("#start").hide();
-    });
 }
 
 function loadQuestions() { //works
     var secondsLeft = 60; //works
-    $("#main-area").append("<p>Time left: <span id='timer'></span></p><br>"); //load timer
+    $("#main-area").html("<p>Time left: <span id='timer'></span></p><br>"); //load timer
     timer = setInterval(function() { //timer function--every second...
         secondsLeft--;  //decrease seconds left by 1
         $("#timer").text(secondsLeft); //display seconds left
@@ -84,20 +81,21 @@ function loadQuestions() { //works
         endGame(); //end game (see endGame function)
     });
     for (var i = 0; i < questions.length; i++) { //for each question... //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!
-        var questionHTML = getQuestion(questions[i]); //store data text from each question object in array
+        var questionHTML = getQuestion(questions[i]); //load question text from corresponding object in array
         $("#questions-container").append(questionHTML); //append questions, answers, & buttons for each question
     }
 }
 
 //NOT WORKING!!!!!!!!!!!!!!!!!!!!*************************************************************************************
-function getQuestion(questionObject/*, answerPosition*/) { //to print questions, answers, and radio buttons
-    $("#questions-container").append("<div id='this-question'></div>"); //add div for each question
-    $("#this-question").append(questionObject.question + "<br>"); //print question text
-    for (var x = 0; x < 4; x++) { //for each answer choice...***********************
-        $("this-question").append(questionObject.answerChoices[x]); //print answer text ***********************
+function getQuestion(questionObject) { //to print questions, answers, and radio buttons
+    //create HTML elements for each question and return div with that question, correct answer, buttons
+    $("#questions-container").append("<div id='this-question'><br>"); //add div for each question
+    $("#this-question").text(questionObject.question + "<br>"); //print question text
+    for (var x = 0; x < questionObject.answerChoices.length; x++) { //for each answer choice...***********************
+        $("this-question").append(questionObject.answerChoices[x]); //print answer text
         $("#this-question").prepend("<input type='radio'></input>"); //add radio button
         $("input").attr("userIndex", x); //assign index to button
-    } //SHOULD I ALSO PASS IN AN "ANSWER POSITION" PARAMETER AND REPLACE WITH ARGUMENT WHEN FUNCTION IS RUN ABOVE????
+    }
 }
 
 function endGame() { //works
