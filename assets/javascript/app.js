@@ -112,8 +112,8 @@ var questions = [ //array containing objects with questions, answer choices, and
     }
 ] //ON START BUTTON CLICK, loop through questions, print to screen along with answer choices & radio buttons***************************************
 
-var userChoices = []; //to store user's choices
-//*****AT END*****, loop through and push user's answer to array, then push to function to log # correct, incorrect--IN ENDGAME FUNCTION????************
+var userChoices = []; //to store ****INDEX OF**** user's choices
+//*****AT END*****, loop through and push user's answer to array
 
 var numCorrect = 0;
 var numIncorrect = 0;
@@ -126,11 +126,11 @@ function startScreen() {
 }
 
 function loadQuestions() {
-    $("#main-area").html("<p>'Time left: '<span id=`timer`></span> + seconds</p><br>"); //load timer
     var secondsLeft = 180;
+    $("#main-area").html("<p>Time left: <span id='timer'></span>" + secondsLeft + "</p><br>"); //load timer
     timer = setInterval(function() { //timer function--every second...
         secondsLeft--;  //decrease seconds left by 1
-        $("#display").text(this.seconds); //display seconds left
+        $("#display").text(secondsLeft); //display seconds left
         if (secondsLeft === 0) { //if time runs out...
             clearInterval(timer);  //stop timer
             endGame(); //end game (see endGame function)
@@ -172,9 +172,9 @@ function endGame() {
 
 function calculate() {
     for (var i = 0; i < questions.length; i++) {
-        if (questions[i].answerIndex == (userChoice[i])) { //if index of correct answer = index of user choice...
+        if (questions[i].answerIndex == (userChoices[i])) { //if index of correct answer = index of user choice...
             numCorrect++;
-        } else if (correctAnswers[i] !== (userChoice[i])) {
+        } else if (questions[i].answerIndex !== (userChoices[i])) {
             numIncorrect++;
         }
     }
