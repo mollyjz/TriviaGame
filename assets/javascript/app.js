@@ -1,59 +1,61 @@
 var timer;
+var userIndex = $("user-index");
 
 var questions = [ //array containing objects with questions, answer choices, and correct answer
     {
         question: "What is the capital of Syria?",
         answerChoices: ["Benghazi", "Beirut", "Cairo", "Damascus"],
-        answerIndex: 3
+        rightAnswer: "Damascus"
     },
     {
         question: "Which of these is the world's tallest mountain?",
         answerChoices: ["Mt. Olympus", "Mt. Everest", "Mt. Kilimanjaro", "Mt. Washington"],
-        answerIndex: 1
+        rightAnswer: "Mt. Everest"
     },
     {
         question: "Which of these is the world's longest river?",
         answerChoices: ["Mississippi", "Ganges", "Nile", "Volta"],
-        answerIndex: 2
+        rightAnswer: "Nile"
     },
     {
         question: "What country is home to Mount Kilimanjaro?",
         answerChoices: ["Africa", "Zimbabwe", "Tanzania", "Brazil"],
-        answerIndex: 2
+        rightAnswer: "Tanzania"
     },
     {
         question: "What is the official language of Kenya?",
         answerChoices: ["French", "English", "Afrikaans", "Swahili"],
-        answerIndex: 3
+        rightAnswer: "Swahili"
     },
     {
         question: "What is the world's most populous city?",
         answerChoices: ["Shanghai", "Beijing", "Tokyo", "Mexico City"],
-        answerIndex: 2
+        rightAnswer: "Tokyo"
     },
     {
         question: "What is the world's smallest country?",
         answerChoices: ["Lichtenstein", "Lithuania", "Vatican City", "Malta"],
-        answerIndex: 2
+        rightAnswer: "Vatican City"
     },
     {
         question: "What is the least densely populated American state?",
-        answerChoices: ["Alaska", "Minnesota", "Maine", "Montana"],
-        answerIndex: 0
+        answerChoices: ["Alaska", "Texas", "Maine", "Montana"],
+        rightAnswer: "Alaska"
     },
     {
         question: "Which of these is the world's largest body of fresh water?",
         answerChoices: ["Dead Sea", "Caspian Sea", "Lake Baikal", "Lake Superior"],
-        answerIndex: 1
+        rightAnswer: "Caspian Sea"
     },
     {
         question: "Which of these is the world's largest continent?",
         answerChoices: ["Antarctica", "Asia", "Africa", "North America"],
-        answerIndex: 1
+        rightAnswer: "Asia"
     }
 ]
 
-var userChoices = []; //to store ****INDEX OF**** user's choices
+var userChoices = []; //to store user's choices
+//PUSH VALUE TO SELECTE BUTTON TO ARRAY?????
 
 var numCorrect = 0;
 var numIncorrect = 0; //WHY DISPLAYING AS 10??????????????*******************************************************
@@ -79,26 +81,23 @@ function loadQuestions() { //works
             }
     }, 1000);
     $("#done-container").append("<button id='done'>Done</button>"); //load "done" button   
+    for (var i = 0; i < questions.length; i++) { //for each question...NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       // $("#questions-container").append("<div id='this-question'></div>"); //add div for each question
+        $("#questions-container").append(questions[i].question + "<br>"); //print question text
+        for (var x = 0; x < 4; x++) { //for each answer choice...****************************************************
+            $("#answers-container").append(questions[i].answerPosition); //print answer text
+            $("#answers-container").prepend("<input type='radio'></input>"); //add radio button
+            $("input").attr("user-index", questions[i].rightAnswer); //assign answer to its corresponding button
+            //var userIndex = $("user-index")
+        }
+    }    
     $("#done-container").on("click", "#done", function() { //if "done" button is clicked...
-        clearInterval(timer); //stop timer
-        endGame(); //end game (see endGame function)
-    });
-    for (var i = 0; i < questions.length; i++) { //for each question... //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!
-        var questionHTML = getQuestion(questions[i]); //store data text from each question object in array
-        $("#questions-container").append(questionHTML); //append questions, answers, & buttons for each question
-    }
+    clearInterval(timer); //stop timer
+    endGame(); //end game (see endGame function)
+});
 }
-
-//NOT WORKING!!!!!!!!!!!!!!!!!!!!*************************************************************************************
-function getQuestion(questionObject/*, answerPosition*/) { //to print questions, answers, and radio buttons
-    $("#questions-container").append("<div id='this-question'></div>"); //add div for each question
-    $("#this-question").append(questionObject.question + "<br>"); //print question text
-    for (var x = 0; x < 4; x++) { //for each answer choice...***********************
-        $("this-question").append(questionObject.answerChoices[x]); //print answer text ***********************
-        $("#this-question").prepend("<input type='radio'></input>"); //add radio button
-        $("input").attr("userIndex", x); //assign index to button
-    } //SHOULD I ALSO PASS IN AN "ANSWER POSITION" PARAMETER AND REPLACE WITH ARGUMENT WHEN FUNCTION IS RUN ABOVE????
-}
+    
+//DO AWAY WITH ANSWER INDEX & USER INDEX AND JUST USE ANSWERS!!!!!!!!!!!!1
 
 function endGame() { //works
     calculate(); 
@@ -112,11 +111,11 @@ function endGame() { //works
 }
 
 function calculate() { //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!********************************************
-    userChoices.push("userIndex"); //push index of user's choice to user choices array (but can't access user index here d/t scope???)
+    userChoices.push(userIndex); //push index of user's choice to user choices array (but can't access user index here d/t scope???)
     for (var i = 0; i < questions.length; i++) {
-        if (questions[i].answerIndex == (userChoices[i])) { //if index of correct answer = index of user choice...
+        if (questions[i].rightAnswer == (userChoices[i])) { //if index of correct answer = index of user choice...
             numCorrect++ //add 1 to count for correct answers
-        } else if (questions[i].answerIndex !== (userChoices[i])) {
+        } else if (questions[i].rightAnswer !== (userChoices[i])) {
             numIncorrect++ //add 1 to count for wrong answers
         }
     }
@@ -124,7 +123,7 @@ function calculate() { //NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*******
     
 function resetGame() { //********************************************************************************************
     $("body").on("click", "#play-again", startScreen); //FUNCTION TO RESET GAME: load start screen, questions & answers
-    userChoices = []; //to store ****INDEX OF**** user's choices
+    userChoices = []; //to store user's choices
     numCorrect = 0;
     numIncorrect = 0; //WHY DISPLAYING AS 10??????????????*******************
     numUnanswered = questions.length - userChoices.length;
