@@ -51,7 +51,7 @@ var questions = [
         answerChoices: ["Antarctica", "Asia", "Africa", "North America"],
         rightAnswer: "Asia"
     }
-]
+];
 
 var userChoices = [];
 
@@ -60,7 +60,7 @@ var numIncorrect = 0;
 var numUnanswered = questions.length - userChoices.length;
 
 function startScreen() { //works
-    $("#main-area").html("<button id='start'>Start</button>") //load start button
+    $("#main-area").append("<button id='start'>Start</button>") //load start button
     $("#start").on("click", function() {
         $("#start").hide();
     });
@@ -68,18 +68,18 @@ function startScreen() { //works
 }
 
 function loadQuestionHtml() { //loop works but questions not loading
-    for (var i = 0; i < 10; i++) { //for each question...
+    for (var i = 0; i < questions.length; i++) { //for each question...
         $("#questions-container").append(questions[i].question); //print question text  ********NOT WORKING********
          //console.log("Hey")
          //console.log(questions[2].rightAnswer) //object registering but not being printed
         for (var x = 0; x < 4; x++) { //for each answer choice...
-             $("#answers-container").append(questions[i].answerChoices); //print answer text
-             $("#answers-container").prepend("<input type='radio' id='radio-buttons'></input>"); //add radio button
-             $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
-             //console.log("Hello")
+        $("#answers-container").append(questions[i].answerChoices); //print answer text
+        $("#answers-container").prepend("<input type='radio' id='radio-buttons'></input>"); //add radio button
+        $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
+        //      //console.log("Hello")
          }
-        }
     }
+}
 
 function loadQuestions() {
     var secondsLeft = 60; //works
