@@ -1,17 +1,63 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url("../images/earth.jpeg");
+    text-align: center;
+}
+
+#main-section {
+    background: lightseagreen;
+    border: 0.5px solid green;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
+#questions-container {
+    font-size: 16px;
+}
+
+#game-done {
+    background: lightseagreen;
+    border: 0.5px solid green;
+    color: darkblue;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
 h1 {
-
+    font-weight: bold;
 }
 
-h4 {
-
-}
 
 #start {
-
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    background: darkblue;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold
 }
 
 #done {
-
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    background: darkblue;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold
 }
 
 #display {

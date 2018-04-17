@@ -103,7 +103,7 @@ function loadQuestions() {
 function endGame() { //works
     calculate(); 
     $("body").html("<p id='game-done'>"); //generate paragraph to hold the info below
-    $("#game-done").append("<h2>Game over!</h2><br>"); //game over message
+    $("#game-done").append("<h1>Game over!</h1><br>"); //game over message
     $("#game-done").append("<h4>Correct: " + numCorrect + "</h4>"); //number of correct answers //works
     $("#game-done").append("<h4>Incorrect: " + numIncorrect + "</h4>"); //number of wrong answers
     $("#game-done").append("<h4>Unanswered: " + numUnanswered + "</h4>"); //# of unanswered questions //works
@@ -128,5 +128,5 @@ function calculate() { //seems to be working?
 ////////////////////////////////////
 
 $(document).ready(function(){
-    startScreen(); //load start button & timer
+    startScreen();
 });
