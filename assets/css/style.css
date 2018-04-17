@@ -31,8 +31,8 @@ body {
 
 h1 {
     font-weight: bold;
+    color: darkblue;
 }
-
 
 #start {
     padding-top: 10px;
@@ -69,10 +69,6 @@ h1 {
 }
 
 #main-area {
-
-}
-
-#timer {
 
 }
 

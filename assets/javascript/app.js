@@ -83,7 +83,7 @@ function loadQuestionHtml() { //loop works but questions not loading
 
 function loadQuestions() {
     var secondsLeft = 60; //works
-    $("#main-area").append("<p>Time left: <span id='timer'></span></p><br>"); //load timer
+    $("#timer-container").append("<p>Time left: <span id='timer'></span></p><br>"); //load timer
     timer = setInterval(function() { //timer function--every second...
         secondsLeft--;  //decrease seconds left by 1
         $("#timer").text(secondsLeft); //display seconds left
