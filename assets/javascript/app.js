@@ -59,7 +59,7 @@ var numCorrect = 0;
 var numIncorrect = 0;
 var numUnanswered = questions.length - userChoices.length;
 
-function startScreen() { //works
+function startScreen() {
     $("#main-area").append("<button id='start'>Start</button>") //load start button
     $("#start").on("click", function() {
         $("#start").hide();
@@ -67,24 +67,25 @@ function startScreen() { //works
     $("#start").on("click", loadQuestions) //load questions function (see below)
 }
 
-function loadQuestionHtml() { //loop works but questions not loading
+//QUESTIONS NEED TO GO ABOVE ANSWERS
+//NEED A RADIO BUTTON FOR EACH ANSWER, NOT EACH SET OF 4 ANSWERS
+//ANSWERS NEED TO BE ON THEIR OWN LINES
+
+function loadQuestionHtml() {
     for (var i = 0; i < questions.length; i++) { //for each question...
-        $("#questions-container").append(questions[i].question); //print question text  ********NOT WORKING********
-         //console.log("Hey")
-         //console.log(questions[2].rightAnswer) //object registering but not being printed
+        $("#questions-container").prepend(questions[i].question + "<br><br>"); //append question text
         for (var x = 0; x < 4; x++) { //for each answer choice...
-        $("#answers-container").append(questions[i].answerChoices); //print answer text
-        $("#answers-container").prepend("<input type='radio' id='radio-buttons'></input>"); //add radio button
+        $("#answers-container").append(questions[i].answerChoices[x] + "&nbsp;"); //print answer text
+        $("#radio-buttons-container").append("<input type='radio' id='radio-buttons'></input>"); //add radio button
         $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
-        //      //console.log("Hello")
-         }
+        }
     }
 }
 
 function loadQuestions() {
-    var secondsLeft = 60; //works
+    var secondsLeft = 60;
     $("#timer-container").append("<p>Time left: <span id='timer'></span></p><br>"); //load timer
-    timer = setInterval(function() { //timer function--every second...
+    timer = setInterval(function() { //timer function: every second...
         secondsLeft--;  //decrease seconds left by 1
         $("#timer").text(secondsLeft); //display seconds left
         if (secondsLeft === 0) { //if time runs out...
@@ -100,20 +101,17 @@ function loadQuestions() {
 });
 }
 
-function endGame() { //works
+function endGame() {
     calculate(); 
     $("body").html("<p id='game-done'>"); //generate paragraph to hold the info below
     $("#game-done").append("<h1>Game over!</h1><br>"); //game over message
     $("#game-done").append("<h4>Correct: " + numCorrect + "</h4>"); //number of correct answers //works
     $("#game-done").append("<h4>Incorrect: " + numIncorrect + "</h4>"); //number of wrong answers
-    $("#game-done").append("<h4>Unanswered: " + numUnanswered + "</h4>"); //# of unanswered questions //works
-    //$("#game-done").append("<button id='play-again'>Play Again!</button>"); //works
-    //resetGame();
+    $("#game-done").append("<h4>Unanswered: " + numUnanswered + "</h4>"); //# of unanswered questions
 }
 
-function calculate() { //seems to be working?
-    //console.log("Is this working?")
-    for (var i = 0; i < questions.length; i++) { //loop seems to be running
+function calculate() {
+    for (var i = 0; i < questions.length; i++) {
         if ($("input[type=radio]:checked")) { //if a radio button is selected, push its value(answer) to 
             userChoices.push($("#radio-buttons").val());
         } if (questions[i].rightAnswer == (userChoices[i])) { //if correct answer = user choice...
@@ -121,7 +119,6 @@ function calculate() { //seems to be working?
         } if (questions[i].rightAnswer !== (userChoices[i])) {
             numIncorrect++; //add 1 to count for wrong answers
         } //this is set to 10 because userChoices is not defined and thus not equal to right answer
-        //console.log("Anyone there?")
     }
 }
 
