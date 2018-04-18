@@ -73,9 +73,8 @@ function startScreen() {
 
 function loadQuestionHtml() {
     for (var i = 0; i < questions.length; i++) { //for each question...
-        $("#questions-container").prepend(questions[i].question + "<br><br>"); //append question text
+        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices + "<br><br>"); //append question & answer text
         for (var x = 0; x < 4; x++) { //for each answer choice...
-        $("#answers-container").append(questions[i].answerChoices[x] + "&nbsp;"); //print answer text
         $("#radio-buttons-container").append("<input type='radio' id='radio-buttons'></input>"); //add radio button
         $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
         }
