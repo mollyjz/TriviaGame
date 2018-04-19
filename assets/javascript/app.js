@@ -4,52 +4,52 @@ var questions = [
     {
         question: "What is the capital of Syria?",
         answerChoices: ["Benghazi", "Beirut", "Cairo", "Damascus"],
-        rightAnswer: "Damascus"
+        rightAnswerIndex: "3"
     },
     {
         question: "Which of these is the world's tallest mountain?",
         answerChoices: ["Mt. Olympus", "Mt. Everest", "Mt. Kilimanjaro", "Mt. Washington"],
-        rightAnswer: "Mt. Everest"
+        rightAnswerIndex: "Mt. Everest"
     },
     {
         question: "Which of these is the world's longest river?",
         answerChoices: ["Mississippi", "Ganges", "Nile", "Volta"],
-        rightAnswer: "Nile"
+        rightAnswerIndex: "Nile"
     },
     {
         question: "What country is home to Mount Kilimanjaro?",
         answerChoices: ["Africa", "Zimbabwe", "Tanzania", "Brazil"],
-        rightAnswer: "Tanzania"
+        rightAnswerIndex: "Tanzania"
     },
     {
         question: "What is the official language of Kenya?",
         answerChoices: ["French", "English", "Afrikaans", "Swahili"],
-        rightAnswer: "Swahili"
+        rightAnswerIndex: "Swahili"
     },
     {
         question: "What is the world's most populous city?",
         answerChoices: ["Shanghai", "Beijing", "Tokyo", "Mexico City"],
-        rightAnswer: "Tokyo"
+        rightAnswerIndex: "Tokyo"
     },
     {
         question: "What is the world's smallest country?",
         answerChoices: ["Lichtenstein", "Lithuania", "Vatican City", "Malta"],
-        rightAnswer: "Vatican City"
+        rightAnswerIndex: "Vatican City"
     },
     {
         question: "What is the least densely populated American state?",
         answerChoices: ["Alaska", "Texas", "Maine", "Montana"],
-        rightAnswer: "Alaska"
+        rightAnswerIndex: "Alaska"
     },
     {
         question: "Which of these is the world's largest body of fresh water?",
         answerChoices: ["Dead Sea", "Caspian Sea", "Lake Baikal", "Lake Superior"],
-        rightAnswer: "Caspian Sea"
+        rightAnswerIndex: "Caspian Sea"
     },
     {
         question: "Which of these is the world's largest continent?",
         answerChoices: ["Antarctica", "Asia", "Africa", "North America"],
-        rightAnswer: "Asia"
+        rightAnswerIndex: "Asia"
     }
 ];
 
@@ -73,9 +73,7 @@ function startScreen() {
 
 function loadQuestionHtml() {
     for (var i = 0; i < questions.length; i++) { //for each question...
-        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices[0] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[1] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[2] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[3] + "<input type='radio' id='radio-buttons'></input><br><br>"); //append question & answer text
-//        for (var x = 0; x < 4; x++) { //for each answer choice...
-  //      $("#radio-buttons-container").append("<input type='radio' id='radio-buttons'></input>"); //add radio button
+        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices[0] + "&nbsp;<input type='radio' id='radio-buttons' data-number='0'></input>&nbsp;" + questions[i].answerChoices[1] + "&nbsp;<input type='radio' id='radio-buttons' data-number='1'></input>&nbsp;" + questions[i].answerChoices[2] + "&nbsp;<input type='radio' id='radio-buttons' data-number='2'></input>&nbsp;" + questions[i].answerChoices[3] + "&nbsp;<input type='radio' id='radio-buttons' data-number='3'></input><br><br>"); //append question & answer text
     //    $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
         }
     }
@@ -111,11 +109,11 @@ function endGame() {
 
 function calculate() {
     for (var i = 0; i < questions.length; i++) {
-        if ($("input[type=radio]:checked")) { //if a radio button is selected, push its value(answer) to 
-            userChoices.push($("#radio-buttons").val());
-        } if (questions[i].rightAnswer == (userChoices[i])) { //if correct answer = user choice...
+        if ($("input[type=radio]:checked")) { //if a radio button is selected, push its "data-number" value (answer) to 
+            userChoices.push($("#radio-buttons").attr("data-number")); //**********************
+        } if (questions[i].rightAnswerIndex == (userChoices[i])) { //if index of correct answer = data-number of user choice...******************
             numCorrect++; //add 1 to count for correct answers
-        } if (questions[i].rightAnswer !== (userChoices[i])) {
+        } if (questions[i].rightAnswerIndex !==(userChoices[i])) {
             numIncorrect++; //add 1 to count for wrong answers
         } //this is set to 10 because userChoices is not defined and thus not equal to right answer
     }

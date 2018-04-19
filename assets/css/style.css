@@ -16,6 +16,11 @@ body {
 
 #questions-container {
     font-size: 16px;
+    color: darkblue;
+}
+
+#timer-container {
+    color: darkblue;
 }
 
 #game-done {
