@@ -73,13 +73,13 @@ function startScreen() {
 
 function loadQuestionHtml() {
     for (var i = 0; i < questions.length; i++) { //for each question...
-        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices + "<br><br>"); //append question & answer text
-        for (var x = 0; x < 4; x++) { //for each answer choice...
-        $("#radio-buttons-container").append("<input type='radio' id='radio-buttons'></input>"); //add radio button
-        $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
+        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices[0] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[1] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[2] + "<input type='radio' id='radio-buttons'></input>" + questions[i].answerChoices[3] + "<input type='radio' id='radio-buttons'></input><br><br>"); //append question & answer text
+//        for (var x = 0; x < 4; x++) { //for each answer choice...
+  //      $("#radio-buttons-container").append("<input type='radio' id='radio-buttons'></input>"); //add radio button
+    //    $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
         }
     }
-}
+//}
 
 function loadQuestions() {
     var secondsLeft = 60;
