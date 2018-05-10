@@ -73,7 +73,7 @@ function startScreen() {
 
 function loadQuestionHtml() {
     for (var i = 0; i < questions.length; i++) { //for each question...
-        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices[0] + "&nbsp;<input type='radio' id='radio-buttons' data-number='0'></input>&nbsp;" + questions[i].answerChoices[1] + "&nbsp;<input type='radio' id='radio-buttons' data-number='1'></input>&nbsp;" + questions[i].answerChoices[2] + "&nbsp;<input type='radio' id='radio-buttons' data-number='2'></input>&nbsp;" + questions[i].answerChoices[3] + "&nbsp;<input type='radio' id='radio-buttons' data-number='3'></input><br><br>"); //append question & answer text
+        $("#questions-container").prepend(questions[i].question + "<br>" + questions[i].answerChoices[0] + "&nbsp;<input type='radio' id='radio-buttons' data-number='0' name='group'></input>&nbsp;" + questions[i].answerChoices[1] + "&nbsp;<input type='radio' id='radio-buttons' data-number='1'></input>&nbsp;" + questions[i].answerChoices[2] + "&nbsp;<input type='radio' id='radio-buttons' data-number='2'></input>&nbsp;" + questions[i].answerChoices[3] + "&nbsp;<input type='radio' id='radio-buttons' data-number='3'></input><br><br>"); //append question & answer text
     //    $("#radio-buttons").val(questions[i].answerChoices[x]); //assign value (answer) to radio button
         }
     }
