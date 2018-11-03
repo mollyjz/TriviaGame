@@ -23,6 +23,11 @@ body {
     color: darkblue;
 }
 
+#form-container {
+    font-size: 16px;
+    color: darkblue;
+}
+
 #game-done {
     background: lightseagreen;
     border: 0.5px solid green;
@@ -49,7 +54,7 @@ h1 {
     background: darkblue;
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold
+
 }
 
 #done {
@@ -62,25 +67,16 @@ h1 {
     background: darkblue;
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold
-}
-
-#display {
-
-}
-
-.choice {
-
-}
-
-#main-area {
-
-}
-
-#game-done {
-
 }
 
 #play-again {
-    
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    background: darkblue;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }

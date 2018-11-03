@@ -1,4 +1,4 @@
-# TriviaGame
+# Geography Trivia Game
 
 Deployed at: https://mollyjz.github.io/TriviaGame/
 
